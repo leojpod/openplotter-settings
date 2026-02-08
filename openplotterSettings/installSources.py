@@ -30,6 +30,7 @@ def main():
 		beta = conf2.get('GENERAL', 'beta')
 
 		codename_debian = 'bookworm'
+		alternative_codename_debian = 'trixie'
 		conf2.set('GENERAL', 'debianCodeName', codename_debian)
 		codename_ubuntu = ['jammy']
 		conf2.set('GENERAL', 'ubuntuCodeName', str(codename_ubuntu))
@@ -46,9 +47,9 @@ def main():
 		if hostID != 'ubuntu' and hostID != 'debian':
 			print(_('FAILED. Unknown system:')+' '+hostID)
 			return
-		if hostID == 'debian' and codeName != codename_debian:
+		if hostID == 'debian' and codeName != codename_debian or codeName  != alternative_codename_debian:
 			print(_('Current Debian version:')+' '+codeName)
-			print(_('FAILED. This version of OpenPlotter only works on this version of Debian:')+' '+codename_debian)
+			print(_('FAILED. This version of OpenPlotter only works on this version of Debian:')+' '+codename_debian+' or '+alternative_codename_debian)
 			return
 		if hostID == 'ubuntu' and codeName not in codename_ubuntu:
 			print(_('Current Ubuntu version:')+' '+codeName)
